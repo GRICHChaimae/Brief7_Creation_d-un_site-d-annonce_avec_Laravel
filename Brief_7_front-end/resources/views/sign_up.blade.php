@@ -22,7 +22,7 @@
         <input type="text" name="mot_de_passe" placeholder="Valider le mot de passe" class="mb-2">
         <input type="submit" name="submit" id="submit" class="mb-2">
         <p>Avez-vous un copmt ? <a href="/"> Clicker-ici</a></p>
-</form>
+</form>           
 </div>     
 </div>
 </div>
