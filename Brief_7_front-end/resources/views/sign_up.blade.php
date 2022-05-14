@@ -10,22 +10,27 @@
 @section('container')
 
 <div class="d-flex">
-    <img src="images/login.png" alt="" id="imgBody">
-<div class="secondContainer">
-<p id="logo">My Baby</p>
-<div class="bgrForm">
-<form action="" class="formContainer">
-        <input type="text" name="prenom" placeholder="Prenom" class="mb-2">
-        <input type="text" name="nom" placeholder="Nom" class="mb-2">
-        <input type="text" name="email" placeholder="Email" class="mb-2">
-        <input type="text" name="mot_de_passe" placeholder="Mot de passe" class="mb-2">
-        <input type="text" name="mot_de_passe" placeholder="Valider le mot de passe" class="mb-2">
-        <input type="submit" name="submit" id="submit" class="mb-2">
-        <p>Avez-vous un copmt ? <a href="/"> Clicker-ici</a></p>
-</form>           
-</div>     
-</div>
-</div>
+        <img src="images/login.png" alt="" id="imgBody">
+    <div class="secondContainer">
+        <p id="logo">My Baby</p>
+    <div class="bgrForm">
+        <form action="{{ route('register') }}" method="post" class="formContainer">
+            @csrf 
+            <input type="text" name="prenom" placeholder="Prenom" value="{{ old('prenom') }}" >
+                <p class="text-danger"> @error('prenom') {{ $message }} @enderror</p>
+            <input type="text" name="nom" placeholder="Nom"  value="{{ old('nom') }}" >
+                <p class="text-danger"> @error('nom') {{ $message }} @enderror</p>
+            <input type="text" name="email" placeholder="Email"  value="{{ old('email') }}" >
+                <p class="text-danger"> @error('email') {{ $message }} @enderror</p>
+            <input type="password" name="mot_de_passe" placeholder="Mot de passe" >
+                <p class="text-danger"> @error('mot_de_passe') {{ $message }} @enderror</p>
+            <input type="password" name="mot_de_passe_confirmation" placeholder="Valider le mot de passe" class="mb-3">
+            <input type="submit" name="submit" id="submit" class="mb-2">
+            <p>Avez-vous un copmt ? <a href="/"> Clicker-ici</a></p>
+        </form>
+    </div>        
+    </div>
+</div>      
 
 @endsection
 
@@ -37,7 +42,7 @@
   margin: 0;
   box-sizing: border-box;
   font-family: 'Poppins', sans-serif;
-  font-weight: 400;
+  font-weight: 400;     
   font-size: 14px;
 }
 
