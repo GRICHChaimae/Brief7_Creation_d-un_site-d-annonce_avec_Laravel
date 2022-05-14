@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\OfferController;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,17 +15,25 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('log_in',[
-        'log_in' => 'log_in'
-    ]);
-});
+Route::get('sign_up', [RegisterController::class, 'index'])->name('register');
+Route::post('sign_up', [RegisterController::class, 'store']);
 
-Route::get('/offre', function () {
-    return view('offre',[
-        'offre' => 'offre'
-    ]);
-});
+Route::get('offre', [OfferController::class, 'index'])->name('offer');
+
+Route::get('/', [RegisterController::class, 'index'])->name('login');
+Route::post('/', [RegisterController::class, 'check']);
+
+// Route::get('/', function () {
+//     return view('log_in',[ 
+//         'log_in' => 'log_in'
+//     ]);
+// });
+
+// Route::get('/offre', function () {
+//     return view('offre',[
+//         'offre' => 'offre'
+//     ]);
+// });
 
 Route::get('/demande', function () {
     return view('demande',[
@@ -31,8 +41,3 @@ Route::get('/demande', function () {
     ]);
 });
 
-Route::get('/sign_up', function () {
-    return view('sign_up',[
-        'sign_up' => 'sign_up'
-    ]);
-});
