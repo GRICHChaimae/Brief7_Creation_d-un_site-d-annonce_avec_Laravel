@@ -15,8 +15,11 @@ class OfferController extends Controller
 
     public function index()
     { 
-        return view('offre',[
-            'offre' => 'offre'
+        $offers = Offer::get();
+
+        return view('offre',[            
+            'offre' => 'offre',
+            'offers' => $offers,
         ]);
     }
 

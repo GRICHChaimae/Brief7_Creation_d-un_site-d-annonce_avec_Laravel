@@ -36,7 +36,7 @@
         </button>
     </div>
 
-    <div class="poste">
+    <!-- <div class="poste">
         <div class="postNave">
             <h4>Titre</h4>
             <button class="btn border-none">
@@ -57,10 +57,10 @@
         Optio atque dolorem, id fuga delectus mollitia, quia nemo,
         alias odio minus deserunt possimus! Pariatur et laudantium</p>
         <img src="images/offre1.png" alt="" class="postImage">
-    </div>
+    </div> -->
 </div>
 
-<div class="poste boy">
+<!-- <div class="poste boy">
     <div class="postNave">
         <h4>Titre</h4>
         <button class="btn border-none">
@@ -81,10 +81,68 @@
     Optio atque dolorem, id fuga delectus mollitia, quia nemo,
     alias odio minus deserunt possimus! Pariatur et laudantium</p>
     <img src="images/offre1.png" alt="" class="postImage">
-</div>
+</div> -->
 </div>
 
 
+@if ($offers->count())
+    @foreach ($offers as $offer)
+    @if( $offer->sexe == "GIRL")
+    
+        <div class="poste">
+        <h3> {{$offer->sexe }} </h3>
+            <div class="postNave">
+                <h4>{{ $offer->titre }}</h4>
+                <button class="btn border-none">
+                    <div class="dropdown">
+                        <a class="btn " href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="bi bi-three-dots-vertical fs-4"></i>
+                        </a>
+
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                            <li><a class="dropdown-item" href="#">Modifier</a></li>
+                            <li><a class="dropdown-item" href="#">Supprimer</a></li>
+                        </ul>
+                    </div>
+                </button>
+
+            </div>
+            <p>{{ $offer->description }}</p>
+            <h5>{{ $offer->prix }}</h5>
+            <img src="{{ $offer->image }}" alt="ff" class="postImage">
+
+        </div>
+    @else
+        <div class="poste boy">
+        <h3> {{$offer->sexe }} </h3>
+            <div class="postNave">
+                <h4>{{ $offer->titre }}</h4>
+                <button class="btn border-none">
+                    <div class="dropdown">
+                        <a class="btn " href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="bi bi-three-dots-vertical fs-4"></i>
+                        </a>
+
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                            <li><a class="dropdown-item" href="#">Modifier</a></li>
+                            <li><a class="dropdown-item" href="#">Supprimer</a></li>
+                        </ul>
+                    </div>
+                </button>
+
+            </div>
+            <p>{{ $offer->description }}</p>
+            <h5>{{ $offer->prix }}</h5>
+            <img src="{{ $offer->image }}" alt="ff" class="postImage">
+
+        </div>
+
+@endif
+    
+    @endforeach
+@else
+    <p> no posts </p>
+@endif
 
 
 
