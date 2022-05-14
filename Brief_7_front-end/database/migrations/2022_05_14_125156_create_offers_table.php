@@ -15,6 +15,13 @@ return new class extends Migration
     {
         Schema::create('offers', function (Blueprint $table) {
             $table->id();
+            $table->text('titre');
+            $table->text('description');
+            $table->float('prix');
+            $table->text('image');
+            $table->text('sexe');
+            $table->unsignedBigInteger('user_id');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
         });
     }

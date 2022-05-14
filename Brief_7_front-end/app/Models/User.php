@@ -34,6 +34,11 @@ class User extends Authenticatable
         'remember_token',
     ];
 
+    public function offers()
+    {
+        return $this->hasMany(Offer::class);
+    }
+
     /**
      * The attributes that should be cast.
      *

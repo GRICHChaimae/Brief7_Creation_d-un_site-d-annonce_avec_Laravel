@@ -24,12 +24,10 @@ Route::get('logout', [LogoutController::class, 'logout'])->name('logout');
 
 
 Route::get('offre', [OfferController::class, 'index'])->name('offer');
+Route::post('offre', [OfferController::class, 'store']);
 
 Route::get('/', [LoginController::class, 'index'])->name('login');
 Route::post('/', [LoginController::class, 'check']);
-
-
-
 
 Route::get('/demande', function () {
     return view('demande',[

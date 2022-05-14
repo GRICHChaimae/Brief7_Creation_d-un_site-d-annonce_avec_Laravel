@@ -97,30 +97,36 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-          <form action="{{ route('offer') }}">
+          <form action="{{ route('offer') }}" method="post">
+              @csrf
               <div class="mb-2">
                   <label for="">Titre :</label>
-                  <input type="text" name="titre" class="form-control">
+                  <input type="text" name="titre" class="form-control" value="{{ old('titre') }}">
+                  <p class="text-danger">@error('titre') {{ $message }} @enderror</p>
               </div>
               <div class="mb-2">
                 <label for="">Description :</label>
-                <input type="text" name="description" class="form-control">
+                <input type="text" name="description" class="form-control" value="{{ old('description') }}">
+                <p class="text-danger">@error('description') {{ $message }} @enderror</p>
               </div>
               <div class="mb-2">
                 <label for="">Prix :</label>
-                <input type="text" name="prix"  class="form-control">
+                <input type="number" name="prix"  class="form-control" value="{{ old('prix') }}">
+                <p class="text-danger">@error('prix') {{ $message }} @enderror</p>
               </div>
               <div class="mb-2">
                 <label for="">Image :</label>
-                <input type="file" name="image"  class="form-control">
+                <input type="file" name="image"  class="form-control" value="{{ old('image') }}">
+                <p class="text-danger">@error('image') {{ $message }} @enderror</p>
               </div>
               <div class="mb-2">
                 <label for="">Sexe :</label>
-                <select name="sexe" class="form-control" required>
+                <select name="sexe" class="form-control" value="{{ old('email') }}">
                     <option value=""></option>
                     <option value="BOY">Boy</option>
                     <option value="GIRL">Girl</option>
                 </select>
+                <p class="text-danger">@error('sexe') {{ $message }} @enderror</p>
               </div>
         </div>
         <div class="modal-footer">
