@@ -1,3 +1,5 @@
+
+
 @extends('layout.masterLayout')
 
 @section('title')
@@ -11,7 +13,7 @@
     <ul class="menu1 my-auto">
         <li><a href="offre" class="active">Offres</a></li>
         <li><a href="demande">Demandes</a></li>
-        <li><a href="/">Se déconnecter</a></li>
+        <li><a href="{{ route('logout') }}">Se déconnecter</a></li>
     </ul>
     <div id="hamburger-icon" onclick="toggleMobileMenu(this)">
         <div class="bar1"></div>
@@ -20,7 +22,7 @@
         <ul class="mobile-menu">
             <li><a href="offre" class="active">Offres</a></li>
             <li><a href="demande">Demandes</a></li>
-            <li><a href="/">Se déconnecter</a></li>
+            <li><a href="{{ route('logout') }}" >Se déconnecter</a></li>
         </ul>
     </div>
 </div>
@@ -95,26 +97,26 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-          <form action="">
+          <form action="{{ route('offer') }}">
               <div class="mb-2">
                   <label for="">Titre :</label>
-                  <input type="text" name=""  class="form-control">
+                  <input type="text" name="titre" class="form-control">
               </div>
               <div class="mb-2">
                 <label for="">Description :</label>
-                <input type="text" name=""  class="form-control">
+                <input type="text" name="description" class="form-control">
               </div>
               <div class="mb-2">
                 <label for="">Prix :</label>
-                <input type="text" name=""  class="form-control">
+                <input type="text" name="prix"  class="form-control">
               </div>
               <div class="mb-2">
                 <label for="">Image :</label>
-                <input type="file" name=""  class="form-control">
+                <input type="file" name="image"  class="form-control">
               </div>
               <div class="mb-2">
                 <label for="">Sexe :</label>
-                <select name="" class="form-control" required>
+                <select name="sexe" class="form-control" required>
                     <option value=""></option>
                     <option value="BOY">Boy</option>
                     <option value="GIRL">Girl</option>
@@ -123,7 +125,7 @@
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-          <button type="submit" class="btn btn-primary">Enregistrer</button>
+          <button type="submit" class="btn btn-primary" value="submit">Enregistrer</button>
         </div>
     </form>
       </div>

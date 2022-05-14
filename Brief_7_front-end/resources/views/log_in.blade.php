@@ -14,10 +14,16 @@
 <div class="secondContainer">
 <p id="logo">My Baby</p>
 <div class="bgrForm">
-<form action="" class="formContainer">
-        <input type="text" name="email" placeholder="Prenom" class="mb-2">
-        <input type="text" name="mot_de_passe" placeholder="Prenom" class="mb-2">
-        <input type="submit" name="submit" id="submit">
+<form action="{{ route('login') }}" method="POST" class="formContainer">
+    @csrf
+    @if (session('status'))
+        <p class="text-danger">{{ session('status') }}</p>
+    @endif
+        <input type="email" name="email" placeholder="Email" value="{{ old('email') }}">
+            <p class="text-danger">@error('email') {{ $message }} @enderror</p>
+        <input type="password" name="password" placeholder="Mot de passe">
+            <p class="text-danger">@error('mot_de_passe') {{ $message }} @enderror</p>
+        <input type="submit" name="submit" id="submit"  class="mb-2">
         <p>Vous n'avez pas un copmt ? <a href="sign_up"> Clicker-ici</a></p>
 </form>
 </div>

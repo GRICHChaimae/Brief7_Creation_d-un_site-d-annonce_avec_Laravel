@@ -31,7 +31,8 @@ class RegisterController extends Controller
             'prenom' => $request->prenom,
             'nom' => $request->nom,
             'email' => $request->email,
-            'mot_de_passe' => Hash::make($request->mot_de_passe),
+            // 'mot_de_passe' => Hash::make($request->mot_de_passe),
+            'mot_de_passe' => $request->mot_de_passe,
         ]);
 
         return redirect()->route('offer');

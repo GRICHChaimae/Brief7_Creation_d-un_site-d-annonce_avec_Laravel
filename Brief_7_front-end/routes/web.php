@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\OfferController;
+use App\Http\Controllers\LoginController;
+use App\Http\Controllers\LogoutController;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,22 +20,16 @@ use App\Http\Controllers\OfferController;
 Route::get('sign_up', [RegisterController::class, 'index'])->name('register');
 Route::post('sign_up', [RegisterController::class, 'store']);
 
+Route::get('logout', [LogoutController::class, 'logout'])->name('logout');
+
+
 Route::get('offre', [OfferController::class, 'index'])->name('offer');
 
-Route::get('/', [RegisterController::class, 'index'])->name('login');
-Route::post('/', [RegisterController::class, 'check']);
+Route::get('/', [LoginController::class, 'index'])->name('login');
+Route::post('/', [LoginController::class, 'check']);
 
-// Route::get('/', function () {
-//     return view('log_in',[ 
-//         'log_in' => 'log_in'
-//     ]);
-// });
 
-// Route::get('/offre', function () {
-//     return view('offre',[
-//         'offre' => 'offre'
-//     ]);
-// });
+
 
 Route::get('/demande', function () {
     return view('demande',[
