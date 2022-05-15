@@ -28,60 +28,10 @@
 </div>
 
 
-</div>
-<div class="">
-    <div class="mt-4">
-        <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#exampleModal" id="addPoste">
+<div class="mt-4">
+    <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#exampleModal" id="addPoste">
             <i class="bi bi-plus-circle-fill"></i>
-        </button>
-    </div>
-
-    <!-- <div class="poste">
-        <div class="postNave">
-            <h4>Titre</h4>
-            <button class="btn border-none">
-                <div class="dropdown">
-                    <a class="btn " href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
-                        <i class="bi bi-three-dots-vertical fs-4"></i>
-                    </a>
-
-                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                        <li><a class="dropdown-item" href="#">Modifier</a></li>
-                        <li><a class="dropdown-item" href="#">Supprimer</a></li>
-                    </ul>
-                </div>
-            </button>
-
-        </div>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.
-        Optio atque dolorem, id fuga delectus mollitia, quia nemo,
-        alias odio minus deserunt possimus! Pariatur et laudantium</p>
-        <img src="images/offre1.png" alt="" class="postImage">
-    </div> -->
-</div>
-
-<!-- <div class="poste boy">
-    <div class="postNave">
-        <h4>Titre</h4>
-        <button class="btn border-none">
-            <div class="dropdown">
-                <a class="btn " href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
-                    <i class="bi bi-three-dots-vertical fs-4"></i>
-                </a>
-
-                <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                    <li><a class="dropdown-item" href="#">Modifier</a></li>
-                    <li><a class="dropdown-item" href="#">Supprimer</a></li>
-                </ul>
-            </div>
-        </button>
-
-    </div>
-    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.
-    Optio atque dolorem, id fuga delectus mollitia, quia nemo,
-    alias odio minus deserunt possimus! Pariatur et laudantium</p>
-    <img src="images/offre1.png" alt="" class="postImage">
-</div> -->
+    </button>
 </div>
 
 
@@ -98,19 +48,16 @@
                         <a class="btn " href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
                             <i class="bi bi-three-dots-vertical fs-4"></i>
                         </a>
-
                         <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                            <li><a class="dropdown-item" href="#">Modifier</a></li>
+                            <li><a class="dropdown-item" href="#">Supprimer</a></li>
                             <li><a class="dropdown-item" href="#">Supprimer</a></li>
                         </ul>
                     </div>
                 </button>
-
             </div>
-            <p>{{ $offer->description }}</p>
-            <h5>{{ $offer->prix }}</h5>
-            <img src="{{ $offer->image }}" alt="ff" class="postImage">
-
+                <p>{{ $offer->description }}</p>
+                <h5>{{ $offer->prix }}</h5>
+                <img src="{{ asset('images/' . $offer->image) }}" alt="ff" class="postImage">
         </div>
     @else
         <div class="poste boy">
@@ -133,18 +80,15 @@
             </div>
             <p>{{ $offer->description }}</p>
             <h5>{{ $offer->prix }}</h5>
-            <img src="{{ $offer->image }}" alt="ff" class="postImage">
+            <img src="{{ asset('images/' . $offer->image) }}" alt="ff" class="postImage">
 
         </div>
 
-@endif
-    
+@endif   
     @endforeach
 @else
     <p> no posts </p>
 @endif
-
-
 
 <!-- Modal -->
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -155,7 +99,7 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-          <form action="{{ route('offer') }}" method="post">
+          <form action="{{ route('offer') }}" method="post" enctype="multipart/form-data">
               @csrf
               <div class="mb-2">
                   <label for="">Titre :</label>

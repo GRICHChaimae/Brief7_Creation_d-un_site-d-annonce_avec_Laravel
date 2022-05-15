@@ -33,11 +33,15 @@ class OfferController extends Controller
             'sexe' => 'required',
         ]);
 
+        $newImageName = time() . '-' . $request->titre . '.' . $request->image->extension();
+        
+        $request->image->move(public_path('images'),$newImageName);
+
         $request->user()->offers()->create([
             'titre' => $request->titre,
             'description' => $request->description,
             'prix' => $request->prix,
-            'image' => $request->image,
+            'image' => $newImageName,
             'sexe' => $request->sexe,
         ]);
 

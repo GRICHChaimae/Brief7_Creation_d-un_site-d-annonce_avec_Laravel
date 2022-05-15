@@ -24,14 +24,14 @@ class RegisterController extends Controller
             'prenom' => 'required',
             'nom' => 'required',
             'email' => 'required',
-            'mot_de_passe' => 'required|confirmed',
+            'password' => 'required|confirmed',
         ]);
 
         User::create([
             'prenom' => $request->prenom,
             'nom' => $request->nom,
             'email' => $request->email,
-            'mot_de_passe' => Hash::make($request->mot_de_passe),
+            'password' => Hash::make($request->password),
         ]);
 
         return redirect()->route('offer');

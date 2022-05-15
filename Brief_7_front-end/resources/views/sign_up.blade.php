@@ -22,9 +22,9 @@
                 <p class="text-danger"> @error('nom') {{ $message }} @enderror</p>
             <input type="text" name="email" placeholder="Email"  value="{{ old('email') }}" >
                 <p class="text-danger"> @error('email') {{ $message }} @enderror</p>
-            <input type="password" name="mot_de_passe" placeholder="Mot de passe" >
+            <input type="password" name="password" placeholder="Mot de passe" >
                 <p class="text-danger"> @error('mot_de_passe') {{ $message }} @enderror</p>
-            <input type="password" name="mot_de_passe_confirmation" placeholder="Valider le mot de passe" class="mb-3">
+            <input type="password" name="password_confirmation" placeholder="Valider le mot de passe" class="mb-3">
             <input type="submit" name="submit" id="submit" class="mb-2">
             <p>Avez-vous un copmt ? <a href="/"> Clicker-ici</a></p>
         </form>
