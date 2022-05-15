@@ -1,3 +1,5 @@
+
+
 @extends('layout.masterLayout')
 
 @section('title')
@@ -11,7 +13,7 @@
     <ul class="menu1 my-auto">
         <li><a href="offre">Offres</a></li>
         <li><a href="demande" class="active">Demandes</a></li>
-        <li><a href="/">Se déconnecter</a></li>
+        <li><a href="{{ route('logout') }}">Se déconnecter</a></li>
     </ul>
     <div id="hamburger-icon" onclick="toggleMobileMenu(this)">
         <div class="bar1"></div>
@@ -20,71 +22,94 @@
         <ul class="mobile-menu">
             <li><a href="offre">Offres</a></li>
             <li><a href="demande" class="active">Demandes</a></li>
-            <li><a href="/">Se déconnecter</a></li>
+            <li><a href="{{ route('logout') }}" >Se déconnecter</a></li>
         </ul>
     </div>
 </div>
 
 
-</div>
-<div class="">
-    <div class="mt-4">
-        <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#exampleModal" id="addPoste">
+<div class="mt-4">
+    <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#exampleModal" id="addPoste">
             <i class="bi bi-plus-circle-fill"></i>
-        </button>
-    </div>
+    </button>
+</div>
 
-    <div class="poste">
-        <div class="postNave">
-            <h4>Titre</h4>
-            <button class="btn border-none">
-                <div class="dropdown">
-                    <a class="btn " href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
-                        <i class="bi bi-three-dots-vertical fs-4"></i>
-                    </a>
 
-                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                        <li><a class="dropdown-item" href="#">Modifier</a></li>
-                        <li><a class="dropdown-item" href="#">Supprimer</a></li>
-                    </ul>
-                </div>
-            </button>
+@if ($demandes->count())
+    @foreach ($demandes as $demande)
+    @if( $demande->sexe == "GIRL")
+    
+        <div class="poste">
+            <div class="postNave">
+                <h4>{{ $demande->titre }}</h4>
+                @if ( auth()->user()->id === $demande->user_id)   
+                <button class="btn border-none">
+                    <div class="dropdown">
+                        <a class="btn " href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="bi bi-three-dots-vertical fs-4"></i>
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                            <li>
+                                <form action="/updateDemande/{{$demande->id}} ">
+                                    <input type="submit" type="submit" style="background: none ; border:none" value="modifier">
+                                </form>
+                            </li>
+                            <li>
+                                <form action="{{ route('deletedemande', $demande) }}" method="post">
+                                @csrf
+                                @method('DELETE')    
+                                    <input type="submit" style="background: none ; border:none" value="spprimer">
+                                </form>
+                            </li>
+                        </ul>
+                    </div>
+                </button>
+                @endif
+            </div>
+                <p>{{ $demande->description }}</p>
+                <h5>Prix : {{ $demande->prix }} $</h5>
+                <img src="{{ asset('images/' . $demande->image) }}" alt="ff" class="postImage">
+        </div>
+    @else
+        <div class="poste boy">
+            <div class="postNave">
+                <h4>{{ $demande->titre }}</h4>
+                @if ( auth()->user()->id === $demande->user_id)  
+                <button class="btn border-none">
+                    <div class="dropdown">
+                        <a class="btn " href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="bi bi-three-dots-vertical fs-4"></i>
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                            <li>
+                                <form action="/updateDemande/{{$demande->id}} ">
+                                    <input type="submit" type="submit" style="background: none ; border:none" value="modifier">
+                                </form>
+                            </li>
+                            <li>
+                                <form action="{{ route('deletedemande', $demande) }}" method="post">
+                                @csrf
+                                @method('DELETE')    
+                                    <input type="submit" style="background: none ; border:none" value="spprimer">
+                                </form>
+                            </li>
+                        </ul>
+                    </div>
+                </button>
+                @endif
+
+            </div>
+            <p>{{ $demande->description }}</p>
+            <h5>Prix : {{ $demande->prix }} $</h5>
+            <img src="{{ asset('images/' . $demande->image) }}" alt="ff" class="postImage">
 
         </div>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.
-        Optio atque dolorem, id fuga delectus mollitia, quia nemo,
-        alias odio minus deserunt possimus! Pariatur et laudantium</p>
-        <img src="images/offre1.png" alt="" class="postImage">
-    </div>
-</div>
 
-<div class="poste boy">
-    <div class="postNave">
-        <h4>Titre</h4>
-        <button class="btn border-none">
-            <div class="dropdown">
-                <a class="btn " href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
-                    <i class="bi bi-three-dots-vertical fs-4"></i>
-                </a>
-
-                <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                    <li><a class="dropdown-item" href="#">Modifier</a></li>
-                    <li><a class="dropdown-item" href="#">Supprimer</a></li>
-                </ul>
-            </div>
-        </button>
-
-    </div>
-    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.
-    Optio atque dolorem, id fuga delectus mollitia, quia nemo,
-    alias odio minus deserunt possimus! Pariatur et laudantium</p>
-    <img src="images/offre1.png" alt="" class="postImage">
-</div>
-</div>
-
-
-
-
+@endif   
+    @endforeach
+@else
+    <p> no posts </p>
+@endif
 
 <!-- Modal -->
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -95,31 +120,41 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-          <form action="">
+          <form action="{{ route('demande') }}" method="post" enctype="multipart/form-data">
+              @csrf
               <div class="mb-2">
                   <label for="">Titre :</label>
-                  <input type="text" name=""  class="form-control">
+                  <input type="text" name="titre" class="form-control" value="{{ old('titre') }}">
+                  <p class="text-danger">@error('titre') {{ $message }} @enderror</p>
               </div>
               <div class="mb-2">
                 <label for="">Description :</label>
-                <input type="text" name=""  class="form-control">
+                <input type="text" name="description" class="form-control" value="{{ old('description') }}">
+                <p class="text-danger">@error('description') {{ $message }} @enderror</p>
+              </div>
+              <div class="mb-2">
+                <label for="">Prix :</label>
+                <input type="number" name="prix"  class="form-control" value="{{ old('prix') }}">
+                <p class="text-danger">@error('prix') {{ $message }} @enderror</p>
               </div>
               <div class="mb-2">
                 <label for="">Image :</label>
-                <input type="file" name=""  class="form-control">
+                <input type="file" name="image"  class="form-control" value="{{ old('image') }}">
+                <p class="text-danger">@error('image') {{ $message }} @enderror</p>
               </div>
               <div class="mb-2">
                 <label for="">Sexe :</label>
-                <select name="" class="form-control" required>
+                <select name="sexe" class="form-control" value="{{ old('email') }}">
                     <option value=""></option>
                     <option value="BOY">Boy</option>
                     <option value="GIRL">Girl</option>
                 </select>
+                <p class="text-danger">@error('sexe') {{ $message }} @enderror</p>
               </div>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-          <button type="submit" class="btn btn-primary">Enregistrer</button>
+          <button type="submit" class="btn btn-primary" value="submit">Enregistrer</button>
         </div>
     </form>
       </div>
@@ -233,21 +268,17 @@ ul{
 
 
 #addPoste{
-
     position: fixed;
     bottom: 0px;
     margin-bottom: 70px;
     margin-left: 50px;
-    /* cursor: pointer; */
-    /* z-index: -1; */
-
 }
 
 .poste{
-    width: 70%;
+    width: 60%;
     background-color: #FAC6E1;
     padding: 20px;
-    margin-left: 15%;
+    margin-left: 20%;
     margin-bottom: 20px;
     margin-right: 2%;
 }
@@ -265,7 +296,9 @@ ul{
 
 .postImage{
     margin-top: 10px;
-    width:50%;
+    width:70%;
+    height: 300px;
+    object-fit: cover; 
 }
 
 .boy{

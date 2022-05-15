@@ -2,7 +2,7 @@
 
 @extends('layout.masterLayout')
 
-@section('title','updateOffer')
+@section('title','updateDemande')
 
 
 @section('container')
@@ -34,32 +34,32 @@
           <h5 class="modal-title" id="exampleModalLabel">Modifier Post</h5>
         </div>
         <div class="modal-body">
-          <form action="/updateOffer/{{$get_offer->id}}" method="post" enctype="multipart/form-data">
+          <form action="/updateDemande/{{$get_demande->id}}" method="post" enctype="multipart/form-data">
                 @csrf
                 @method('PUT')
               <div class="mb-2">
                   <label for="">Titre :</label>
-                  <input type="text" name="titre" class="form-control" value="{{ $get_offer->titre }}">
+                  <input type="text" name="titre" class="form-control" value="{{ $get_demande->titre }}">
                   <p class="text-danger">@error('titre') {{ $message }} @enderror</p>
               </div>
               <div class="mb-2">
                 <label for="">Description :</label>
-                <input type="text" name="description" class="form-control" value="{{$get_offer->description }}">
+                <input type="text" name="description" class="form-control" value="{{ $get_demande->description }}">
                 <p class="text-danger">@error('description') {{ $message }} @enderror</p>
               </div>
               <div class="mb-2">
                 <label for="">Prix :</label>
-                <input type="number" name="prix"  class="form-control" value="{{ $get_offer->prix }}">
+                <input type="number" name="prix"  class="form-control" value="{{ $get_demande->prix }}">
                 <p class="text-danger">@error('prix') {{ $message }} @enderror</p>
               </div>
               <div class="mb-2">
                 <label for="">Image :</label>
-                <input type="file" name="image"  class="form-control" value="{{ $get_offer->image }}">
+                <input type="file" name="image"  class="form-control" value="{{ $get_demande->image }}">
                 <p class="text-danger">@error('image') {{ $message }} @enderror</p>
               </div>
               <div class="mb-2">
                 <label for="">Sexe :</label>
-                <select name="sexe" class="form-control" value="{{ $get_offer->sexe }}">
+                <select name="sexe" class="form-control" value="{{ $get_demande->sexe }}">
                     <option value=""></option>
                     <option value="BOY">Boy</option>
                     <option value="GIRL">Girl</option>

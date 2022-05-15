@@ -39,6 +39,11 @@ class User extends Authenticatable
         return $this->hasMany(Offer::class);
     }
 
+    public function demandes()
+    {
+        return $this->hasMany(Demande::class);
+    }
+
     /**
      * The attributes that should be cast.
      *

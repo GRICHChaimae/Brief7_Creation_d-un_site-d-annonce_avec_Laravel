@@ -12,7 +12,7 @@
     <p id="logo1" class="my-auto">My Baby</p>
     <ul class="menu1 my-auto">
         <li><a href="offre" class="active">Offres</a></li>
-        <li><a href="demande">Demandes</a></li>
+        <li><a href="{{ route('demande') }}">Demandes</a></li>
         <li><a href="{{ route('logout') }}">Se déconnecter</a></li>
     </ul>
     <div id="hamburger-icon" onclick="toggleMobileMenu(this)">
