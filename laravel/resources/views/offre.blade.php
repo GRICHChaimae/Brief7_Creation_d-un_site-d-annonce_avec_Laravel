@@ -40,10 +40,8 @@
     @if( $offer->sexe == "GIRL")
     
         <div class="poste">
-        <h3> {{$offer->sexe }} </h3>
             <div class="postNave">
                 <h4>{{ $offer->titre }}</h4>
-                <h2>{{$offer->id}}</h2>
                 @if ( auth()->user()->id === $offer->user_id)   
                 <button class="btn border-none">
                     <div class="dropdown">
@@ -52,24 +50,28 @@
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                             <li>
-                                {{-- <a class="dropdown-item" href="#">update</a> --}}
                                 <form action="/updateOffer/{{$offer->id}} ">
-                                    <input type="submit" style="background: none , border:none" value="modifier">
+                                    <input type="submit" type="submit" style="background: none ; border:none" value="modifier">
                                 </form>
                             </li>
-                            <li><a class="dropdown-item" href="#">Supprimer</a></li>
+                            <li>
+                                <form action="{{ route('deleteoffer', $offer) }}" method="post">
+                                @csrf
+                                @method('DELETE')    
+                                    <input type="submit" style="background: none ; border:none" value="spprimer">
+                                </form>
+                            </li>
                         </ul>
                     </div>
                 </button>
                 @endif
             </div>
                 <p>{{ $offer->description }}</p>
-                <h5>{{ $offer->prix }}</h5>
+                <h5>Prix : {{ $offer->prix }} $</h5>
                 <img src="{{ asset('images/' . $offer->image) }}" alt="ff" class="postImage">
         </div>
     @else
         <div class="poste boy">
-        <h3> {{$offer->sexe }} </h3>
             <div class="postNave">
                 <h4>{{ $offer->titre }}</h4>
                 @if ( auth()->user()->id === $offer->user_id)  
@@ -78,10 +80,19 @@
                         <a class="btn " href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
                             <i class="bi bi-three-dots-vertical fs-4"></i>
                         </a>
-
                         <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                            <li><a class="dropdown-item" href="#">Modifier</a></li>
-                            <li><a class="dropdown-item" href="#">Supprimer</a></li>
+                            <li>
+                                <form action="/updateOffer/{{$offer->id}} ">
+                                    <input type="submit" type="submit" style="background: none ; border:none" value="modifier">
+                                </form>
+                            </li>
+                            <li>
+                                <form action="{{ route('deleteoffer', $offer) }}" method="post">
+                                @csrf
+                                @method('DELETE')    
+                                    <input type="submit" style="background: none ; border:none" value="spprimer">
+                                </form>
+                            </li>
                         </ul>
                     </div>
                 </button>
@@ -89,7 +100,7 @@
 
             </div>
             <p>{{ $offer->description }}</p>
-            <h5>{{ $offer->prix }}</h5>
+            <h5>Prix : {{ $offer->prix }} $</h5>
             <img src="{{ asset('images/' . $offer->image) }}" alt="ff" class="postImage">
 
         </div>
@@ -257,21 +268,17 @@ ul{
 
 
 #addPoste{
-
     position: fixed;
     bottom: 0px;
     margin-bottom: 70px;
     margin-left: 50px;
-    /* cursor: pointer; */
-    /* z-index: -1; */
-
 }
 
 .poste{
-    width: 70%;
+    width: 60%;
     background-color: #FAC6E1;
     padding: 20px;
-    margin-left: 15%;
+    margin-left: 20%;
     margin-bottom: 20px;
     margin-right: 2%;
 }
@@ -289,7 +296,9 @@ ul{
 
 .postImage{
     margin-top: 10px;
-    width:50%;
+    width:70%;
+    height: 300px;
+    object-fit: cover; 
 }
 
 .boy{

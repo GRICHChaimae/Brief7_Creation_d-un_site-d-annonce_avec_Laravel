@@ -26,6 +26,8 @@ Route::get('logout', [LogoutController::class, 'logout'])->name('logout');
 Route::get('offre', [OfferController::class, 'index'])->name('offer');
 Route::post('offre', [OfferController::class, 'store']);
 
+Route::delete('offre/{offer}', [OfferController::class, 'delete_offer'])->name('deleteoffer');
+
 Route::get('/updateOffer/{offer}',[OfferController::class,'find_offer'])->name('findoffer');
 Route::put('/updateOffer/{offer}',[OfferController::class,'update_offer'])->name('updateoffer');
 

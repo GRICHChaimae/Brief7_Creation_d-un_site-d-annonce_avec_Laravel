@@ -48,10 +48,15 @@ class OfferController extends Controller
         return back();
 
     }
-    public function find_offer(Offer $offer){
-        $get_offer=Offer::find($offer->id);
+
+    public function find_offer(Offer $offer)
+    {
+
+        $get_offer = Offer::find($offer->id);
         return view('updateOffer',['get_offer'=>$get_offer]);
+
     }
+
     public function update_offer(Request $request,Offer $offer){
         $updated_offer = Offer::find($offer->id);
 
@@ -75,5 +80,11 @@ class OfferController extends Controller
             $updated_offer->update();
 
         return redirect(route('offer'));
+    }
+
+    public function delete_offer(Offer $offer)
+    {
+        $offer->delete();
+        return back(); 
     }
 }
